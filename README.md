@@ -26,4 +26,4 @@ Then open `http://localhost:8080` in your browser, paste text into the box, and 
 
 ## Screenshot
 
-![alt text](image.png)
+![alt text](image-1.png)
