@@ -3,15 +3,15 @@
     <head>
         <title>Word Processor</title>
     </head>
-    <body style="background-color: rgb(9, 9, 110); text-align: center;">
-        <h1 style="color: rgb(18, 89, 170); text-align: center;">Word Processor</h1>
+    <body style="background-color: #0a1930; text-align: center;">
+        <h1 style="color: #ffffff; text-align: center;">Word Processor</h1>
         <form method="POST" action="/">
-            <textarea name="text" rows="10" cols="60" placeholder="Type here..." style="background-color: rgb(27, 166, 190);; color: lime; padding: 10px; border-radius: 8px; border: none;">{{.Input}}</textarea>
+            <textarea name="text" rows="10" cols="60" placeholder="Type here..." style="background-color: #12294d; color: #ffffff; padding: 10px; border-radius: 8px; border: 2px solid #3a7bd5;">{{.Input}}</textarea>
             <br><br>
-            <input type="submit" value="Fix Text">
+            <input type="submit" value="Fix Text" style="background-color: #3a7bd5; color: #ffffff; border: none; padding: 8px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">
         </form>
         {{if .Output}}
-        <pre style="background-color: rgb(27, 166, 190); color: lime; padding: 20px; margin: 20px auto; width: 60%; text-align: left; border-radius: 8px;">{{.Output}}</pre>
+        <pre style="background-color: #071627; color: #a3c9f9; padding: 20px; margin: 20px auto; width: 60%; text-align: left; border-radius: 8px; border: 2px solid #3a7bd5;">{{.Output}}</pre>
         {{end}}
     </body>
 </html>
