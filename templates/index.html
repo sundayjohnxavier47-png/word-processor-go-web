@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Word Processor</title>
+    </head>
+    <body style="background-color: rgb(9, 9, 110); text-align: center;">
+        <h1 style="color: rgb(18, 89, 170); text-align: center;">Word Processor</h1>
+        <form method="POST" action="/">
+            <textarea name="text" rows="10" cols="60" placeholder="Type here..." style="background-color: rgb(27, 166, 190);; color: lime; padding: 10px; border-radius: 8px; border: none;">{{.Input}}</textarea>
+            <br><br>
+            <input type="submit" value="Fix Text">
+        </form>
+        {{if .Output}}
+        <pre style="background-color: rgb(27, 166, 190); color: lime; padding: 20px; margin: 20px auto; width: 60%; text-align: left; border-radius: 8px;">{{.Output}}</pre>
+        {{end}}
+    </body>
+</html>
