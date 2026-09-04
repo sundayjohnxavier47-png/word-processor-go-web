@@ -4,50 +4,36 @@ func fixQuotes(text string) string {
 	runes := []rune(text)
 	result := []rune{}
 
-	doubleOpen := true // tracks whether the next " is opening or closing
-	singleOpen := true // tracks whether the next ' is opening or closing
+	doubleOpen := true
+	singleOpen := true
 
 	for i := 0; i < len(runes); i++ {
 		c := runes[i]
 
-		if c == '"' {
-			if doubleOpen {
-				// opening quote: strip trailing space just added before it
-				for len(result) > 0 && result[len(result)-1] == ' ' {
-					result = result[:len(result)-1]
-				}
-				result = append(result, c)
-				// then also skip any space right after it in the source
-				for i+1 < len(runes) && runes[i+1] == ' ' {
-					i++
-				}
-			} else {
-				// closing quote: strip space just before it
-				for len(result) > 0 && result[len(result)-1] == ' ' {
-					result = result[:len(result)-1]
-				}
-				result = append(result, c)
-			}
-			doubleOpen = !doubleOpen
-			continue
-		}
+		if c == '"' || c == '\'' {
+			isDouble := c == '"'
+			isOpening := (isDouble && doubleOpen) || (!isDouble && singleOpen)
 
-		if c == '\'' {
-			if singleOpen {
-				for len(result) > 0 && result[len(result)-1] == ' ' {
-					result = result[:len(result)-1]
-				}
+			if isOpening {
+				// keep whatever spacing came before it (don't touch result)
 				result = append(result, c)
+				// skip any spaces right after the opening quote
 				for i+1 < len(runes) && runes[i+1] == ' ' {
 					i++
 				}
 			} else {
+				// closing quote: strip trailing spaces before it
 				for len(result) > 0 && result[len(result)-1] == ' ' {
 					result = result[:len(result)-1]
 				}
 				result = append(result, c)
 			}
-			singleOpen = !singleOpen
+
+			if isDouble {
+				doubleOpen = !doubleOpen
+			} else {
+				singleOpen = !singleOpen
+			}
 			continue
 		}
 
